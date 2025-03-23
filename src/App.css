@@ -1,20 +1,53 @@
-body {
-  font-family: Meiryo, sans-serif;
+.App {
+  text-align: center;
+  font-family: "Meiryo", sans-serif;
+  background-color: transparent;
+}
+
+.option-group {
+  margin: 20px 0;
+}
+
+.label {
+  font-size: 32px;
+  margin: 10px;
+  font-weight: bold;
+}
+
+.option-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px;
+}
+
+.option-button {
+  margin: 5px;
+  padding: 12px 24px;
+  border-radius: 15px;
   background-color: white;
+  border: 3px solid #ddd;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
-h1, p {
-  margin: 10px 0;
+.option-button:hover {
+  background-color: #f7f7f7;
 }
 
-.select-box {
-  padding: 10px;
-  margin: 10px 0;
-  font-size: 18px;
+.option-button.selected {
+  background-color: #ffefef;
+  border-color: #ff7777;
 }
 
 .price {
-  font-size: 28px;
+  font-size: 30px;
+  margin-top: 50px;
   font-weight: bold;
-  margin-top: 20px;
+}
+
+.price-value {
+  font-size: 60px;
+  color: black;
 }
