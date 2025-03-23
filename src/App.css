@@ -1,53 +1,65 @@
-.App {
-  text-align: center;
-  font-family: "Meiryo", sans-serif;
+body {
+  font-family: 'Meiryo', sans-serif;
   background-color: transparent;
+  margin: 0;
+  padding: 0;
 }
 
-.option-group {
-  margin: 20px 0;
+.container {
+  text-align: center;
+  padding: 20px;
 }
 
 .label {
-  font-size: 32px;
-  margin: 10px;
-  font-weight: bold;
+  font-size: 28px;
+  margin-bottom: 8px;
 }
 
-.option-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 10px;
-}
-
-.option-button {
-  margin: 5px;
-  padding: 12px 24px;
-  border-radius: 15px;
-  background-color: white;
-  border: 3px solid #ddd;
-  cursor: pointer;
+.dropdown {
   font-size: 20px;
-  transition: background-color 0.3s, border-color 0.3s;
+  padding: 10px 16px; /* 枠を広くする */
+  margin: 8px;
+  border-radius: 12px;
+  border: 2px solid #ccc;
+  width: 300px; /* 幅を広げる */
 }
 
-.option-button:hover {
-  background-color: #f7f7f7;
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 16px 0;
 }
 
-.option-button.selected {
-  background-color: #ffefef;
-  border-color: #ff7777;
+.plan-button {
+  font-size: 20px;
+  padding: 12px 24px;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.plan-button:hover {
+  background-color: #f0f0f0;
+}
+
+.plan-button.selected {
+  background-color: #ffebee;
+  border-color: #f44336;
 }
 
 .price {
-  font-size: 30px;
-  margin-top: 50px;
-  font-weight: bold;
+  font-size: 28px; /* 月額の大きさを少し小さく */
+  margin-top: 20px;
 }
 
 .price-value {
+  font-weight: bold;
   font-size: 60px;
-  color: black;
+}
+
+.price-per-session {
+  font-size: 20px; /* 1回あたりの金額の大きさを少し小さく */
 }
