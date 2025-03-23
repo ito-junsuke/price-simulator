@@ -17,28 +17,34 @@ body {
 
 .dropdown {
   font-size: 20px;
-  padding: 10px 16px; /* 枠を広くする */
+  padding: 10px 16px;
   margin: 8px;
-  border-radius: 12px;
-  border: 2px solid #ccc;
-  width: 300px; /* 幅を広げる */
+  border-radius: 8px;
+  border: 3px solid #ccc;
+  width: 300px;
 }
 
 .button-group {
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin: 16px 0;
+  margin: 20px 0;
 }
 
 .plan-button {
   font-size: 20px;
   padding: 12px 24px;
-  border: 2px solid #ccc;
-  border-radius: 20px;
+  border: 3px solid #ccc;
+  border-radius: 12px;
   background-color: white;
   cursor: pointer;
   transition: background-color 0.3s;
+  text-align: center;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .plan-button:hover {
@@ -51,8 +57,9 @@ body {
 }
 
 .price {
-  font-size: 28px; /* 月額の大きさを少し小さく */
-  margin-top: 20px;
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 40px;
 }
 
 .price-value {
@@ -61,5 +68,5 @@ body {
 }
 
 .price-per-session {
-  font-size: 20px; /* 1回あたりの金額の大きさを少し小さく */
+  font-size: 20px;
 }

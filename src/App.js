@@ -2,28 +2,61 @@ import React, { useState } from 'react';
 import './App.css';
 
 const priceTable = {
-    '深夜・早朝（0:00~5:00）': { '2回': 2750, '4回': 5000, '7回': 7500, '10回': 9500, '無制限': 15000 },
-    '朝（5:00~12:00）': { '2回': 3000, '4回': 5500, '7回': 8000, '10回': 9500, '無制限': 16000 },
-    '昼（12:00~18:00）': { '2回': 3250, '4回': 6000, '7回': 8500, '10回': 10500, '無制限': 17000 },
-    '夜（18:00~0:00）': { '2回': 3500, '4回': 6500, '7回': 9500, '10回': 11000, '無制限': 18000 },
-    '24時間': { '2回': 3980, '4回': 7000, '7回': 9800, '10回': 13000, '無制限': 19800 },
+    "深夜・早朝（0:00~5:00）": {
+        "ビギナー": { count: "2回", price: 2750 },
+        "ライト": { count: "4回", price: 5000 },
+        "アクティブ": { count: "7回", price: 7500 },
+        "ハード": { count: "10回", price: 9500 },
+        "VIP": { count: "無制限", price: 15000 }
+    },
+    "朝（5:00~12:00）": {
+        "ビギナー": { count: "2回", price: 3000 },
+        "ライト": { count: "4回", price: 5500 },
+        "アクティブ": { count: "7回", price: 8000 },
+        "ハード": { count: "10回", price: 9500 },
+        "VIP": { count: "無制限", price: 16000 }
+    },
+    "昼（12:00~18:00）": {
+        "ビギナー": { count: "2回", price: 3250 },
+        "ライト": { count: "4回", price: 6000 },
+        "アクティブ": { count: "7回", price: 8500 },
+        "ハード": { count: "10回", price: 10500 },
+        "VIP": { count: "無制限", price: 17000 }
+    },
+    "夜（18:00~0:00）": {
+        "ビギナー": { count: "2回", price: 3500 },
+        "ライト": { count: "4回", price: 6500 },
+        "アクティブ": { count: "7回", price: 9500 },
+        "ハード": { count: "10回", price: 11000 },
+        "VIP": { count: "無制限", price: 18000 }
+    },
+    "フルタイム（0:00~24:00）": {
+        "ビギナー": { count: "2回", price: 3980 },
+        "ライト": { count: "4回", price: 7000 },
+        "アクティブ": { count: "7回", price: 9800 },
+        "ハード": { count: "10回", price: 13000 },
+        "VIP": { count: "無制限", price: 19800 }
+    }
 };
 
 const App = () => {
-    const [selectedTime, setSelectedTime] = useState(Object.keys(priceTable)[0]);
-    const [selectedPlan, setSelectedPlan] = useState(Object.keys(priceTable[selectedTime])[0]);
+    const [selectedTime, setSelectedTime] = useState("深夜・早朝（0:00~5:00）");
+    const [selectedPlan, setSelectedPlan] = useState("ビギナー");
+    const [price, setPrice] = useState(priceTable[selectedTime][selectedPlan].price);
+    const [count, setCount] = useState(priceTable[selectedTime][selectedPlan].count);
 
     const handleTimeChange = (event) => {
-        setSelectedTime(event.target.value);
-        setSelectedPlan(Object.keys(priceTable[event.target.value])[0]);
+        const newTime = event.target.value;
+        setSelectedTime(newTime);
+        setPrice(priceTable[newTime][selectedPlan].price);
+        setCount(priceTable[newTime][selectedPlan].count);
     };
 
-    const handlePlanChange = (event) => {
-        setSelectedPlan(event.target.value);
+    const handlePlanClick = (plan) => {
+        setSelectedPlan(plan);
+        setPrice(priceTable[selectedTime][plan].price);
+        setCount(priceTable[selectedTime][plan].count);
     };
-
-    const price = priceTable[selectedTime][selectedPlan];
-    const pricePerSession = selectedPlan === '無制限' ? Math.floor(price / 30) : Math.floor(price / parseInt(selectedPlan));
 
     return (
         <div className="container">
@@ -40,21 +73,22 @@ const App = () => {
                     <button
                         key={plan}
                         className={`plan-button ${selectedPlan === plan ? 'selected' : ''}`}
-                        onClick={() => setSelectedPlan(plan)}
+                        onClick={() => handlePlanClick(plan)}
                     >
                         {plan}
+                        <br />
+                        {priceTable[selectedTime][plan].count}
                     </button>
                 ))}
             </div>
 
-            <p className="price">
-                月額 <span className="price-value">{price.toLocaleString()}円</span>
-                {pricePerSession ? (
-                    <span className="price-per-session">（1回あたり{pricePerSession}円）</span>
-                ) : (
-                    <span className="price-per-session">（1日あたり{pricePerSession}円）</span>
-                )}
-            </p>
+            <div className="price">
+                月額 <span className="price-value">{price.toLocaleString()}</span>円
+            </div>
+            <div className="price-per-session">
+                {selectedPlan !== "VIP" && `（1回あたり${Math.floor(price / parseInt(count))}円）`}
+                {selectedPlan === "VIP" && `（1日あたり${Math.floor(price / 30)}円）`}
+            </div>
         </div>
     );
 };
